@@ -1,0 +1,112 @@
+import numpy as npy
+
+
+def num1():
+    while(True):
+        try:
+            x=input()
+            x=int(x)
+            break
+        except:
+            print("Error, se esperaba un número, reintente")
+    return(x)
+def Menuveterinaria():
+    print("Clinica Veterinaria")
+    print("----------------------------------------")
+    print("1) Ingresar Ficha de la Mascota")
+    print("2) Buscar Codigo de la Mascota")
+    print("3) Eliminar codigo de la Mascota")
+    print("4) Listar Mascotas")
+    print("5) Salir")
+def codigomascota():
+    while(True):
+        x=input()
+        if x=="":
+            print("Error, campo ingresado vacío, reintente de nuevo")
+        else:
+            break
+    return(x)
+
+def fichamascota(m,f):
+    if f==0:
+        print("Nombre de Mascota:",pac[m,f])
+    elif f==1:
+        print("Codigo de Mascota:",pac[m,f])
+    elif f==2:
+        print("Edad de Mascota:",pac[m,f])
+    elif f==3:
+        print("Peso de Mascota:",pac[m,f])
+    elif f==4:
+        print("Raza de Mascota:",pac[m,f])
+    elif f==5:
+        print("Especie de Mascota:",pac[m,f])
+    elif f==6:
+        print("Diagnóstico de Mascota:")
+        print(pac[m,f])
+    elif f==7:
+        print("Medicamentos para la Mascota:",pac[m,f])
+
+pac=npy.empty([50,8],dtype="object") 
+g=0
+while(True):
+    Menuveterinaria()
+    opt=num1()
+    if opt==1:
+        for i in range(0,8):
+            if i==0:
+                print("Ingrese el nombre de la mascota")
+                pac[g,i]=input()
+            elif i==1:
+                print("Ingrese el codigo de la mascota")
+                pac[g,i]=codigomascota()
+            elif i==2:
+                print("Ingrese la edad de la mascota")
+                pac[g,i]=input()
+            elif i==3:
+                print("Ingrese la peso de la mascota")
+                pac[g,i]=input()
+            elif i==4:
+                print("Ingrese la raza de la mascota")
+                pac[g,i]=input()
+            elif i==5:
+                print("Ingrese especie de la mascota ")
+                pac[g,i]=input()
+            elif i==6:
+                print("Ingrese el diagnóstico de la mascota")
+                pac[g,i]=input()
+            elif i==7:
+                print("Ingrese medicamentos recetados de la mascota")
+                pac[g,i]=input()
+        g+=1
+        print("Paciente ingresado con éxito")
+    elif opt==2:
+        print("Ingrese el codigo de la mascota a buscar")
+        x=input()
+        for i in range(0,50):
+            if x==pac[i,1]:
+                print("Mascota encontrada, sus datos son los siguientes:")
+                for f in range(0,8):
+                    fichamascota(i,f)
+                 
+                break
+        else:
+            print("Mascota no encontrada")
+    elif opt==3:
+        print("Ingrese el codigo de la mascota a eliminar")
+        x=input()
+        for i in range(0,50):
+            if x==pac[i,1]:
+                print("Mascota encontrada, los medicamentos recetados son los siguientes:")
+                print(pac[i,7])
+                break
+        else:
+            print("Paciente no encontrado")
+    elif opt==4:
+        for i in range(0,50):
+            print("Mascota:")
+            for f in range(0,7):
+                Menuveterinaria(i,f)
+    elif opt==6:
+        break
+    else:
+        print("Error, ingrese opción válida")
